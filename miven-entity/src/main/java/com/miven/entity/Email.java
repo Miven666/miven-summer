@@ -1,5 +1,6 @@
 package com.miven.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Data;
  * @since 1.0
  */
 @Data
+@AllArgsConstructor
 public class Email {
 
     private String to;
