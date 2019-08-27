@@ -14,6 +14,16 @@ public class StringUtils {
      * @return 注释文本
      */
     public static String formatComment(String comment) {
-        return comment.replace(" * ", " ").replaceAll("[\r\n]", " ");
+        return comment.replace(" * ", " ")
+                .replace("<p>", "").replace("</p>", "")
+                .replace("<ul>", "").replace("</ul>", "")
+                .replace("<li>", "").replace("</li>", "")
+                .replace("<em>", "").replace("</em>", "")
+                .replace("<i>", "").replace("</i>", "")
+                .replace("@link ", "")
+                .replace("@code ", "")
+                .replace("@", "")
+                .replace("{", "").replace("}", "")
+                .replaceAll("[\r\n]", " ");
     }
 }
