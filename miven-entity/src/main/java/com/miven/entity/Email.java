@@ -2,6 +2,7 @@ package com.miven.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *  邮箱
@@ -10,6 +11,7 @@ import lombok.Data;
  * @since 1.0
  */
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class Email {
 
