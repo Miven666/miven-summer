@@ -1,6 +1,8 @@
 package com.miven.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  *  书
@@ -9,6 +11,8 @@ import lombok.Data;
  * @since 1.0
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Book {
     /**
      *  国际标准书号
