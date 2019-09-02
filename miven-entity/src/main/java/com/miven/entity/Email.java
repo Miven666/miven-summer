@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  *  邮箱
  * @author mingzhi.xie
@@ -13,7 +15,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Email {
+public class Email implements Serializable {
+
+    private static final long serialVersionUID = 8651730041658391718L;
 
     private String to;
 
