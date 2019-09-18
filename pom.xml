@@ -12,6 +12,8 @@
     <modules>
         <module>miven-core</module>
         <module>miven-entity</module>
+        <module>miven-logging</module>
+        <module>miven-starter</module>
     </modules>
 
     <properties>
