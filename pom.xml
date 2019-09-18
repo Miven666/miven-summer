@@ -33,6 +33,12 @@
         <dependencies>
             <dependency>
                 <groupId>miven.java</groupId>
+                <artifactId>miven-logging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>miven.java</groupId>
                 <artifactId>miven-dependencies-parent</artifactId>
                 <version>${miven.version}</version>
                 <scope>import</scope>
