@@ -20,6 +20,7 @@ public class StringUtils {
                 .replace("<li>", "").replace("</li>", "")
                 .replace("<em>", "").replace("</em>", "")
                 .replace("<i>", "").replace("</i>", "")
+                .replace("<b>", "").replace("</b>", "")
                 .replace("@link ", "")
                 .replace("@code ", "")
                 .replace("@", "")

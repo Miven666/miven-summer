@@ -14,6 +14,7 @@
         <module>miven-entity</module>
         <module>miven-logging</module>
         <module>miven-starter</module>
+        <module>miven-spring-boot</module>
     </modules>
 
     <properties>
