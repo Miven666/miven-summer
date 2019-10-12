@@ -1,5 +1,7 @@
 package com.miven.spring.boot.autoconfigure.logging;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -10,4 +12,10 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class LoggingAutoConfiguration {
+
+    @Bean
+    @ConditionalOnMissingBean
+    public MethodLogAdvisingPostProcessor methodLogAdvisingPostProcessor() {
+        return new MethodLogAdvisingPostProcessor();
+    }
 }
