@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>miven-springboot</artifactId>
+    <artifactId>miven-spring-boot</artifactId>
     <packaging>pom</packaging>
     <modules>
         <module>miven-spring-boot-autoconfigure</module>
