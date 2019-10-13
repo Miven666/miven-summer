@@ -35,7 +35,27 @@
         <dependencies>
             <dependency>
                 <groupId>miven.java</groupId>
+                <artifactId>miven-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>miven.java</groupId>
+                <artifactId>miven-entity</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>miven.java</groupId>
                 <artifactId>miven-logging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>miven.java</groupId>
+                <artifactId>miven-spring-boot</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>miven.java</groupId>
+                <artifactId>miven-starter</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

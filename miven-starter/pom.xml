@@ -15,4 +15,13 @@
         <module>miven-starter-logging</module>
     </modules>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>miven.java</groupId>
+                <artifactId>miven-starter-logging</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
