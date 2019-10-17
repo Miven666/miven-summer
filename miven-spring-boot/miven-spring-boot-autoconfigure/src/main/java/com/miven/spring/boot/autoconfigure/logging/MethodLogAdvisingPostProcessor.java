@@ -1,5 +1,6 @@
 package com.miven.spring.boot.autoconfigure.logging;
 
+import com.miven.logging.Logging;
 import org.aopalliance.aop.Advice;
 import org.springframework.aop.Pointcut;
 import org.springframework.aop.framework.AbstractSingletonProxyFactoryBean;
@@ -31,7 +32,7 @@ public class MethodLogAdvisingPostProcessor extends AbstractBeanFactoryAwareAdvi
 
     @Override
     public void afterPropertiesSet() {
-        Pointcut pointcut = new AnnotationMatchingPointcut(this.logAnnotationType, true);
+        Pointcut pointcut = new AnnotationMatchingPointcut(this.logAnnotationType, this.logAnnotationType,true);
         super.advisor = new DefaultPointcutAdvisor(pointcut, createMethodLogInterceptor());
     }
 }
