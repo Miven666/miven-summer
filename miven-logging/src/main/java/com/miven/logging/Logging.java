@@ -1,4 +1,4 @@
-package com.miven.spring.boot.autoconfigure.logging;
+package com.miven.logging;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -14,4 +14,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
 public @interface Logging {
+    /**
+     * 日志级别，默认 INFO
+     */
+    Level level() default Level.INFO;
 }
