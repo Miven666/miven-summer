@@ -1,7 +1,6 @@
 package com.miven.spring.boot.autoconfigure.logging;
 
 import com.miven.logging.LogMethodContent;
-import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 
@@ -11,7 +10,6 @@ import org.aopalliance.intercept.MethodInvocation;
  * @date 2019/10/11
  * @since 1.0
  */
-@Slf4j
 public class MethodLogInterceptor implements MethodInterceptor {
 
     private LogMethodContent content = new LogMethodContent();
