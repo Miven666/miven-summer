@@ -4,11 +4,13 @@
     <parent>
         <groupId>miven.java</groupId>
         <artifactId>miven-summer</artifactId>
-        <version>1.0</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>miven-core</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
+    <name>${project.artifactId} ${project.version}</name>
 
     <dependencies>
         <dependency>
