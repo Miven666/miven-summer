@@ -6,11 +6,11 @@
     <parent>
         <groupId>miven.java</groupId>
         <artifactId>miven-summer</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
 
     <artifactId>miven-entity</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
     <name>${project.artifactId} ${project.version}</name>
 
