@@ -8,6 +8,7 @@ import lombok.Data;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.groups.Default;
 import java.io.Serializable;
 
 /**
@@ -15,7 +16,6 @@ import java.io.Serializable;
  * @author mingzhi.xie
  * @date 2019/3/20
  */
-
 @Data
 public class Fruit implements Serializable {
 
@@ -24,7 +24,7 @@ public class Fruit implements Serializable {
     private int id;
     @NotBlank(groups ={Query.class, Insert.class, Update.class})
     private String name;
-    @Min(value = 1, groups = Delete.class)
+    @Min(value = 1, groups = {Default.class, Delete.class})
     private int number;
 
 
