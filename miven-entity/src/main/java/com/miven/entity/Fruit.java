@@ -1,9 +1,9 @@
 package com.miven.entity;
 
-import com.miven.entity.valid.Delete;
-import com.miven.entity.valid.Insert;
-import com.miven.entity.valid.Query;
-import com.miven.entity.valid.Update;
+import com.miven.core.validation.groups.Delete;
+import com.miven.core.validation.groups.Insert;
+import com.miven.core.validation.groups.Query;
+import com.miven.core.validation.groups.Update;
 import lombok.Data;
 
 import javax.validation.constraints.Min;
