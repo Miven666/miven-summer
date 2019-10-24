@@ -8,7 +8,9 @@
     </parent>
 
     <artifactId>miven-core</artifactId>
+    <version>1.0</version>
     <packaging>jar</packaging>
+    <name>${project.artifactId} ${project.version}</name>
 
     <dependencies>
         <dependency>

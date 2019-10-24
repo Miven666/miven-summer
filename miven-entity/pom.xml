@@ -10,9 +10,15 @@
     </parent>
 
     <artifactId>miven-entity</artifactId>
+    <version>1.0</version>
     <packaging>jar</packaging>
+    <name>${project.artifactId} ${project.version}</name>
 
     <dependencies>
+        <dependency>
+            <groupId>miven.java</groupId>
+            <artifactId>miven-core</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
