@@ -1,6 +1,5 @@
 package com.miven.core.util;
 
-import java.util.Collections;
 import java.util.Random;
 
 /**
@@ -36,9 +35,9 @@ public class RandomUtils {
             String stringLong = String.valueOf(nextLong);
             if (nextLong < 0) {
                 stringLong = stringLong.substring(1);
-                nextLong = Long.valueOf(stringLong);
+                nextLong = Long.parseLong(stringLong);
             }
-            return digit < stringLong.length() ? Long.valueOf(stringLong.substring(0, digit)) : nextLong;
+            return digit < stringLong.length() ? Long.parseLong(stringLong.substring(0, digit)) : nextLong;
         }
 
         StringBuilder sb = new StringBuilder();
@@ -46,7 +45,7 @@ public class RandomUtils {
         for (int i = 0; i < digit; i++) {
             sb.append(0);
         }
-        return RANDOM.nextInt(Integer.valueOf(sb.toString()));
+        return RANDOM.nextInt(Integer.parseInt(sb.toString()));
     }
 
     /**
@@ -62,25 +61,6 @@ public class RandomUtils {
             strDouble = strDouble + positiveNumber(digit - validLength);
         }
 
-        return Double.valueOf(strDouble.substring(0, digit + DECIMAL_PREFIX_LENGTH));
-    }
-
-    /**
-     * 随机生成小于指定范围的正小数，(0,bound)
-     * @param bound 范围
-     * @return 正小数
-     */
-    public static double boundDecimal(double bound) {
-        String strBound = String.valueOf(bound).substring(DECIMAL_PREFIX_LENGTH);
-        int validBound = strBound.length();
-        int validNum = RANDOM.nextInt(Integer.valueOf(strBound));
-        int validDigit = String.valueOf(validNum).length();
-        String strJoin = "";
-
-        if (validBound > validDigit) {
-            strJoin = String.join("", Collections.nCopies(validBound - validDigit, "0"));
-        }
-        return Double.valueOf(DECIMAL_PREFIX + strJoin + validNum);
-
+        return Double.parseDouble(strDouble.substring(0, digit + DECIMAL_PREFIX_LENGTH));
     }
 }
