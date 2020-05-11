@@ -13,7 +13,8 @@ import org.springframework.beans.factory.InitializingBean;
 import java.lang.annotation.Annotation;
 
 /**
- *  日志代理工厂
+ * 增强方法日志输出的处理器
+ *
  * @author mingzhi.xie
  * @date 2019/10/11
  * @since 1.0
@@ -24,7 +25,7 @@ public class MethodLogAdvisingPostProcessor extends AbstractBeanFactoryAwareAdvi
 
     private static final long serialVersionUID = -2593285466220107057L;
 
-    private Class<? extends Annotation> logAnnotationType = Logging.class;
+    private final Class<? extends Annotation> logAnnotationType = Logging.class;
 
     protected Advice createMethodLogInterceptor() {
         return new MethodLogInterceptor();

@@ -6,6 +6,8 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 /**
  * 微服务方法日志信息
  * @author mingzhi.xie
@@ -14,7 +16,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class LogMethodMicroServiceContent extends LogMethodContent {
+public class LogMethodMicroServiceContent<T> extends LogMethodContent<T> {
     private static final long serialVersionUID = 3538082186736345581L;
 
     /**
@@ -41,6 +43,12 @@ public class LogMethodMicroServiceContent extends LogMethodContent {
     @Override
     protected void filterProperty() {
         super.filterProperty();
+        Set<String> excludes = propertyPreFilter.getExcludes();
+        if (!Module.SpringModule.Controller.name().equalsIgnoreCase(super.getModule())) {
+            excludes.add("host");
+        } else  {
+            excludes.remove("host");
+        }
     }
 
     @Override

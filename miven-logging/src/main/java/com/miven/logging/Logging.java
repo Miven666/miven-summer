@@ -1,9 +1,6 @@
 package com.miven.logging;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * 日志拦截注解
@@ -11,6 +8,7 @@ import java.lang.annotation.Target;
  * @date 2019/10/12
  * @since 1.0
  */
+@Inherited
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.METHOD, ElementType.TYPE})
 public @interface Logging {
@@ -18,4 +16,9 @@ public @interface Logging {
      * 日志级别，默认 INFO
      */
     Level level() default Level.INFO;
+    /**
+     * 模块名,例如：{@link Module.SpringModule#Controller}
+     * @see Module
+     */
+    String module() default "";
 }
