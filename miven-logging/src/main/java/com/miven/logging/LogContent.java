@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * 日志信息
@@ -19,7 +20,7 @@ import java.io.Serializable;
 @Setter
 public class LogContent implements Serializable {
     private static final long serialVersionUID = -5803742959496051744L;
-    protected PropertyPreFilters.MySimplePropertyPreFilter propertyPreFilter = new PropertyPreFilters().addFilter();
+    protected transient PropertyPreFilters.MySimplePropertyPreFilter propertyPreFilter = new PropertyPreFilters().addFilter();
 
     @JSONField(ordinal = 1000)
     protected String exception;
@@ -28,14 +29,19 @@ public class LogContent implements Serializable {
 
     protected void filterProperty() {
         propertyPreFilter.addExcludes("propertyPreFilter");
+        Set<String> excludes = propertyPreFilter.getExcludes();
         if (exception == null && msg == null) {
-            propertyPreFilter.addExcludes("exception", "msg");
+            excludes.add("exception");
+            excludes.add("msg");
+        } else {
+            excludes.remove("exception");
+            excludes.remove("msg");
         }
     }
 
     @Override
     public String toString() {
         filterProperty();
-        return JSON.toJSONString(this, propertyPreFilter, SerializerFeature.WriteMapNullValue);
+        return JSON.toJSONString(LogContent.this, propertyPreFilter, SerializerFeature.WriteMapNullValue);
     }
 }
