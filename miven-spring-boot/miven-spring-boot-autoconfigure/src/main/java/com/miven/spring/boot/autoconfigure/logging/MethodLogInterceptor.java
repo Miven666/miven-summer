@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 
@@ -28,6 +29,14 @@ public class MethodLogInterceptor implements MethodInterceptor {
      * 也可以改写成局部变量解决此问题，这里采用{@link ThreadLocal}方式
      */
     private final ThreadLocal<LogMethodContent<Object>> ctl = ThreadLocal.withInitial(LogMethodContent::new);
+    /**
+     * 是否开启控制层日志
+     */
+    private final boolean lcEnable;
+
+    public MethodLogInterceptor(boolean lcEnable) {
+        this.lcEnable = lcEnable;
+    }
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
@@ -42,11 +51,28 @@ public class MethodLogInterceptor implements MethodInterceptor {
             logging = method.getDeclaredAnnotation(Logging.class);
         } else if (presentDC) {
             logging = declaringClass.getDeclaredAnnotation(Logging.class);
+        } else if (lcEnable && isDeclaringController(declaringClass)) {
+            logging = new Logging() {
+                @Override
+                public Class<? extends Annotation> annotationType() {
+                    return Logging.class;
+                }
+
+                @Override
+                public Level level() {
+                    return Level.INFO;
+                }
+
+                @Override
+                public String module() {
+                    return "Controller";
+                }
+            };
         }
         if (logging != null) {
             String module = logging.module();
             if (!StringUtils.hasText(module)) {
-                if (declaringClass.isAnnotationPresent(Controller.class) || declaringClass.isAnnotationPresent(RestController.class)) {
+                if (isDeclaringController(declaringClass)) {
                     module = Controller.class.getSimpleName();
                 }
                 if (declaringClass.isAnnotationPresent(Service.class)) {
@@ -92,5 +118,9 @@ public class MethodLogInterceptor implements MethodInterceptor {
             return result;
         }
         return invocation.proceed();
+    }
+
+    private boolean isDeclaringController(Class<?> declaringClass) {
+        return declaringClass.isAnnotationPresent(Controller.class) || declaringClass.isAnnotationPresent(RestController.class);
     }
 }
