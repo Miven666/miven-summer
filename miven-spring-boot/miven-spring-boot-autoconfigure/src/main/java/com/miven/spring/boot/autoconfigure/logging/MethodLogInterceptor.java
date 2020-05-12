@@ -22,8 +22,12 @@ import java.lang.reflect.Parameter;
  * @since 1.0
  */
 public class MethodLogInterceptor implements MethodInterceptor {
-
-    private final LogMethodContent<Object> content = new LogMethodContent<>();
+    /**
+     * 该拦截器最终会被注册成单例，所以直接用{@link LogMethodContent}做成员变量很可能
+     * 引发线程安全问题
+     * 也可以改写成局部变量解决此问题，这里采用{@link ThreadLocal}方式
+     */
+    private final ThreadLocal<LogMethodContent<Object>> ctl = ThreadLocal.withInitial(LogMethodContent::new);
 
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
@@ -39,7 +43,6 @@ public class MethodLogInterceptor implements MethodInterceptor {
         } else if (presentDC) {
             logging = declaringClass.getDeclaredAnnotation(Logging.class);
         }
-
         if (logging != null) {
             String module = logging.module();
             if (!StringUtils.hasText(module)) {
@@ -54,6 +57,7 @@ public class MethodLogInterceptor implements MethodInterceptor {
                 }
             }
 
+            LogMethodContent<Object> content = ctl.get();
             WebRequestContent webRequestContent = WebRequestContentContextHolder.getWebRequestContent();
             if (Module.SpringModule.Controller.name().equalsIgnoreCase(module) && webRequestContent!= null) {
                 content.setMapping(webRequestContent.getMapping());
@@ -83,6 +87,7 @@ public class MethodLogInterceptor implements MethodInterceptor {
             content.setMethodBehavior(MethodBehavior.answer);
             content.setResult(result);
             LogUtils.log(logging.level(), logger, content.toString());
+            ctl.remove();
 
             return result;
         }
