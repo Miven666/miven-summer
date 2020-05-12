@@ -6,6 +6,7 @@ import org.springframework.aop.Pointcut;
 import org.springframework.aop.framework.AbstractSingletonProxyFactoryBean;
 import org.springframework.aop.framework.autoproxy.AbstractBeanFactoryAwareAdvisingPostProcessor;
 import org.springframework.aop.scope.ScopedProxyFactoryBean;
+import org.springframework.aop.support.ComposablePointcut;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.aop.support.annotation.AnnotationMatchingPointcut;
 import org.springframework.beans.factory.InitializingBean;
@@ -33,7 +34,10 @@ public class MethodLogAdvisingPostProcessor extends AbstractBeanFactoryAwareAdvi
 
     @Override
     public void afterPropertiesSet() {
-        Pointcut pointcut = new AnnotationMatchingPointcut(this.logAnnotationType, this.logAnnotationType,true);
-        super.advisor = new DefaultPointcutAdvisor(pointcut, createMethodLogInterceptor());
+        Pointcut cpc = new AnnotationMatchingPointcut(logAnnotationType, true);
+        ComposablePointcut result = new ComposablePointcut(cpc);
+        Pointcut mpc = new AnnotationMatchingPointcut(null, logAnnotationType, true);
+        result = result.union(mpc);
+        super.advisor = new DefaultPointcutAdvisor(result, createMethodLogInterceptor());
     }
 }
