@@ -39,18 +39,18 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>miven.java</groupId>
-                <artifactId>miven-dependencies-parent</artifactId>
-                <version>${miven.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-            </dependency>
-            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>miven.java</groupId>
+                <artifactId>miven-dependencies-parent</artifactId>
+                <version>${miven.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
