@@ -44,4 +44,6 @@ public class Fruit implements Serializable {
     @NotBlank(groups = {Query.class, Default.class})
     private String consumer;
 
+    private Region region;
+
 }
