@@ -1,4 +1,4 @@
-package com.miven.core.validation.groups;
+package com.miven.entity.validation.groups;
 
 /**
  * 删除组

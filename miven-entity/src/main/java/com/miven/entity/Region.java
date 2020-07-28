@@ -15,4 +15,13 @@ public enum Region {
      */
     NORTH,
     ;
+
+    public static Region fromText(String text) {
+        for (Region value : values()) {
+            if (value.name().equals(text)) {
+                return value;
+            }
+        }
+        throw new IllegalArgumentException("unknown enum value: " + text);
+    }
 }
