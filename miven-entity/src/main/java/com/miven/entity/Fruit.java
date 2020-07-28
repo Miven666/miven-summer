@@ -1,12 +1,9 @@
 package com.miven.entity;
 
-import com.miven.core.validation.constraints.TimeInterval;
-import com.miven.core.validation.constraints.TimeInterval.Start;
-import com.miven.core.validation.constraints.TimeInterval.End;
-import com.miven.core.validation.groups.Delete;
-import com.miven.core.validation.groups.Insert;
-import com.miven.core.validation.groups.Query;
-import com.miven.core.validation.groups.Update;
+import com.miven.entity.validation.groups.Delete;
+import com.miven.entity.validation.groups.Insert;
+import com.miven.entity.validation.groups.Query;
+import com.miven.entity.validation.groups.Update;
 import lombok.Data;
 
 import javax.validation.GroupSequence;
@@ -23,10 +20,6 @@ import java.io.Serializable;
  */
 @Data
 @GroupSequence({Query.class, Delete.class, Insert.class, Update.class, Fruit.class})
-@TimeInterval(
-        start = @Start(property = "produceTime"),
-        end  = @End(property = "overTime")
-)
 public class Fruit implements Serializable {
     private static final long serialVersionUID = 1047204607917402451L;
 
@@ -51,12 +44,6 @@ public class Fruit implements Serializable {
     @NotBlank(groups = {Query.class, Default.class})
     private String consumer;
 
-    /**
-     * 生产时间
-     */
-    private String produceTime;
-    /**
-     * 过期时间
-     */
-    private String overTime;
+    private Region region;
+
 }
